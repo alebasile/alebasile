@@ -340,6 +340,8 @@
 
     .tl-content { padding-top: 2px; }
 
+    .tl-date-mobile { display: none; }
+
     .tl-role {
       font-family: 'Syne', sans-serif;
       font-size: 16px;
@@ -648,7 +650,17 @@
         display: none;
       }
 
-      .tl-role { font-size: 15px; }
+      .tl-content .tl-date-mobile {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 3px;
+      }
+
+      .tl-date-mobile { display: none; }
+
+    .tl-role { font-size: 15px; }
 
       .extra-grid { grid-template-columns: 1fr; }
 
@@ -689,6 +701,10 @@
       transform: none;
     }
   </style>
+  <script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+  </script>
 </head>
 <body>
 
@@ -780,6 +796,7 @@
         <div class="tl-date">Dic 2024<br>Presente</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
         <div class="tl-content">
+          <span class="tl-date-mobile">Dic 2024 – Presente</span>
           <div class="tl-role">Energy &amp; Data Engineer</div>
           <div class="tl-org">Replanet Energy · Cosenza</div>
           <div class="tl-desc">
@@ -806,6 +823,7 @@
         <div class="tl-date">Mag 2024<br>Giu 2025</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
         <div class="tl-content">
+          <span class="tl-date-mobile">Mag 2024 – Giu 2025</span>
           <div class="tl-role">Master II livello · Mobilità Elettrica ed Economia Circolare</div>
           <div class="tl-org">Università della Calabria</div>
           <span class="tl-grade">110L</span>
@@ -815,6 +833,7 @@
         <div class="tl-date">Apr 2024<br>Dic 2024</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
         <div class="tl-content">
+          <span class="tl-date-mobile">Apr 2024 – Dic 2024</span>
           <div class="tl-role">Master · Data Analytics</div>
           <div class="tl-org">ProfessionAI</div>
         </div>
@@ -823,6 +842,7 @@
         <div class="tl-date">Gen 2020<br>Apr 2023</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
         <div class="tl-content">
+          <span class="tl-date-mobile">Gen 2020 – Apr 2023</span>
           <div class="tl-role">Laurea Magistrale · Ingegneria dell'Automazione</div>
           <div class="tl-org">Università della Calabria</div>
           <span class="tl-grade">110</span>
@@ -832,6 +852,7 @@
         <div class="tl-date">Set 2016<br>Dic 2019</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
         <div class="tl-content">
+          <span class="tl-date-mobile">Set 2016 – Dic 2019</span>
           <div class="tl-role">Laurea Triennale · Ingegneria Elettronica</div>
           <div class="tl-org">Università della Calabria</div>
           <span class="tl-grade">103</span>
