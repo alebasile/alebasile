@@ -465,6 +465,10 @@
       .projects-wrap { padding: 0 16px 60px; }
     }
   </style>
+  <script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+  </script>
 </head>
 <body>
 
@@ -728,10 +732,6 @@
 <script>document.getElementById('em-footer-projectshtml').textContent='ale.basile'+'@'+'outlook.com';</script>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ── Hamburger ──
-  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
-
   // ── State ──
   let activeSkill = 'all';
   let activeCat   = 'all';
@@ -815,10 +815,6 @@
     }
   }
 </script><script>
-  // ── Hamburger ──
-  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
-
   // ── Filter logic ──
   const chips = document.querySelectorAll('.filter-chip');
   const cards = document.querySelectorAll('.proj-card');
