@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progetti – Alessandro Basile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:   #0d2240;
+      --blue:   #1a4a8a;
+      --mid:    #2f6db5;
+      --accent: #3a8fd4;
+      --light:  #d6e4f5;
+      --bg:     #f4f7fb;
+      --white:  #ffffff;
+      --ink:    #1c2b3a;
+      --muted:  #5a7089;
+      --border: #dce8f4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Mulish', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,34,64,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #5b8ab8;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: #5b8ab8; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color .2s, background .2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,.08); }
+    .nav-links a.active { color: var(--white); }
+
+    .btn-cv {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 7px 14px !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+      font-size: 12.5px !important;
+      transition: background .2s, transform .15s !important;
+    }
+
+    .btn-cv:hover { background: var(--mid) !important; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,.8);
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(13,34,64,.98);
+      padding: 12px 24px 16px;
+      gap: 4px;
+    }
+
+    .mobile-menu a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu.open { display: flex; }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding-top: 56px;
+      background: linear-gradient(135deg, var(--navy) 0%, #0f3060 60%, #1a4a8a 100%);
+      padding-bottom: 0;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 40px;
+    }
+
+    .hero-inner h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .hero-inner p {
+      color: rgba(255,255,255,.6);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .hero-inner strong { color: var(--accent); font-weight: 600; }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 56px;
+      z-index: 90;
+    }
+
+    .filter-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    /* Skill dropdown */
+    .filter-select-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .filter-select {
+      font-family: 'Mulish', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--light);
+      border: 1.5px solid transparent;
+      padding: 6px 32px 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      transition: border-color .18s, background .18s;
+    }
+
+    .filter-select:focus,
+    .filter-select:hover {
+      border-color: var(--accent);
+      background: #c8daf2;
+    }
+
+    .select-arrow {
+      position: absolute;
+      right: 10px;
+      pointer-events: none;
+      color: var(--blue);
+    }
+
+    .filter-cats {
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter-reset {
+      font-family: 'Mulish', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      background: none;
+      border: 1.5px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all .18s;
+      display: none;
+    }
+
+    .filter-reset.visible {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .filter-reset:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .filter-chip {
+      font-family: 'Mulish', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--light);
+      border: 1.5px solid transparent;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all .18s;
+      white-space: nowrap;
+    }
+
+    .filter-chip:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .filter-chip.active {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+
+    .filter-chip.cat {
+      background: var(--navy);
+      color: rgba(255,255,255,.8);
+      border-color: transparent;
+    }
+
+    .filter-chip.cat.active,
+    .filter-chip.cat:hover {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+
+    /* ── RESULTS COUNT ── */
+    .results-bar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .results-bar strong { color: var(--ink); }
+
+    /* ── GRID ── */
+    .projects-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    .proj-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow .2s, transform .2s;
+      animation: fadeIn .3s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .proj-card:hover {
+      box-shadow: 0 8px 28px rgba(26,74,138,.12);
+      transform: translateY(-3px);
+    }
+
+    .proj-card.hidden {
+      display: none;
+    }
+
+    .proj-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .proj-cat {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .proj-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .proj-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+      text-align: justify;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .proj-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--light);
+      padding: 3px 9px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+
+    .proj-tag:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    /* No results */
+    .no-results {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .no-results svg { margin-bottom: 12px; opacity: .4; }
+    .no-results p { font-size: 15px; }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.5);
+      padding: 18px 24px;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: rgba(255,255,255,.6);
+    }
+
+    .footer-linkedin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-linkedin:hover { color: var(--accent); }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .filter-bar-inner { padding: 10px 16px; gap: 6px; }
+      .projects-wrap { padding: 0 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Alessandro <span>Basile</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#profilo">Profilo</a></li>
+      <li><a href="index.html#esperienza">Esperienza</a></li>
+      <li><a href="index.html#formazione">Formazione</a></li>
+      <li><a href="index.html#extra">Attività</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="projects.html" class="active">Progetti</a></li>
+      <li>
+        <a href="cv.html" target="_blank" class="btn-cv">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          CV A4
+        </a>
+      </li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#profilo" onclick="closeMenu()">Profilo</a>
+    <a href="index.html#esperienza" onclick="closeMenu()">Esperienza</a>
+    <a href="index.html#formazione" onclick="closeMenu()">Formazione</a>
+    <a href="index.html#extra" onclick="closeMenu()">Attività</a>
+    <a href="index.html#skills" onclick="closeMenu()">Skills</a>
+    <a href="projects.html" onclick="closeMenu()">Progetti</a>
+    <a href="cv.html" target="_blank" onclick="closeMenu()">📄 CV versione A4</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <h1>Progetti</h1>
+    <p>Breve raccolta e descrizione dei progetti svolti durante i percorsi formativi.</p>
+
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <span class="filter-label">Filtra per</span>
+    <div class="filter-select-wrap">
+      <select id="skillSelect" class="filter-select">
+        <option value="all">Tutte le skill</option>
+        <option value="Python">Python</option>
+        <option value="SQL">SQL</option>
+        <option value="Machine Learning">Machine Learning</option>
+        <option value="NLP">NLP</option>
+        <option value="Scikit-learn">Scikit-learn</option>
+        <option value="PySpark">PySpark</option>
+        <option value="Power BI">Power BI</option>
+        <option value="Tableau">Tableau</option>
+        <option value="Excel Avanzato">Excel Avanzato</option>
+        <option value="Matlab">Matlab</option>
+        <option value="Simulink">Simulink</option>
+        <option value="Embedded C">Embedded C</option>
+        <option value="LabVIEW">LabVIEW</option>
+        <option value="ROS Noetic">ROS Noetic</option>
+        <option value="PID">PID</option>
+      </select>
+      <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="filter-cats">
+      <button class="filter-chip cat" data-filter="UNICAL">🎓 UNICAL</button>
+      <button class="filter-chip cat" data-filter="ProfessionAI">💻 ProfessionAI</button>
+    </div>
+    <button class="filter-reset" id="resetBtn" onclick="resetFilter()">✕ Reset</button>
+  </div>
+</div>
+
+<div class="results-bar" id="resultsBar">
+  <strong>20</strong> progetti trovati
+</div>
+
+<div class="projects-wrap">
+  <div class="projects-grid" id="projectsGrid">
+      <article class="proj-card" data-tags="Python|PySpark|NLP|Machine Learning|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Analisi del Sentiment sul Bitcoin</h3>
+        <p class="proj-desc">Analisi avanzata del sentiment sui tweet riguardanti il Bitcoin tramite Natural Language Processing e analisi di serie storiche. Implementato su PySpark con il modello VADER per la sentiment analysis, con visualizzazioni delle variazioni giornaliere del sentiment realizzate con Matplotlib e Seaborn.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">PySpark</span><span class="proj-tag">NLP</span><span class="proj-tag">Machine Learning</span></div>
+      </article>
+      <article class="proj-card" data-tags="Python|Machine Learning|Scikit-learn|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Segmentazione Clientela – Servizi Finanziari</h3>
+        <p class="proj-desc">Segmentazione della clientela di un'azienda finanziaria tramite clustering K-Means per ottimizzare le campagne di marketing. Dopo EDA e normalizzazione dei dati, i cluster sono stati valutati con silhouette score e elbow method, identificando gruppi omogenei per spesa e abitudini d'uso.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Machine Learning</span><span class="proj-tag">Scikit-learn</span></div>
+      </article>
+      <article class="proj-card" data-tags="Python|NLP|Machine Learning|Scikit-learn|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Filtro per Fake News</h3>
+        <p class="proj-desc">Classificatore di notizie vere e false basato su Random Forest. Il testo è preprocessato con spaCy (tokenizzazione, rimozione stop words, lemmatizzazione) e il modello è valutato con accuracy, precision e recall.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">NLP</span><span class="proj-tag">Machine Learning</span><span class="proj-tag">Scikit-learn</span></div>
+      </article>
+      <article class="proj-card" data-tags="Python|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Software Gestionale per Negozio</h3>
+        <p class="proj-desc">Software gestionale testuale da riga di comando per un negozio di prodotti vegani. Gestisce inventario, vendite, aggiornamento scorte, calcolo profitti e persistenza dei dati su file. Design modulare con strutture dati ottimizzate e controlli di input.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span></div>
+      </article>
+      <article class="proj-card" data-tags="Python|SQL|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Analisi Disastri Aerei 1919–2023</h3>
+        <p class="proj-desc">Analisi approfondita di quasi 25.000 incidenti aerei con distribuzione geografica (cartogrammi), trend temporali, analisi degli operatori e fattori stagionali. Librerie: Pandas, Matplotlib, Seaborn, GeoPandas.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">SQL</span></div>
+      </article>
+      <article class="proj-card" data-tags="SQL|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Analisi Clienti di una Banca</h3>
+        <p class="proj-desc">Creazione di una tabella denormalizzata con feature avanzate per training di modelli ML. Join tra tabelle clienti/conti/transazioni, calcolo di indicatori comportamentali e strutturazione delle feature per predizione di abbandono e frodi.</p>
+        <div class="proj-tags"><span class="proj-tag">SQL</span></div>
+      </article>
+      <article class="proj-card" data-tags="Power BI|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Report Punti Vendita – Catena Elettronica</h3>
+        <p class="proj-desc">Report interattivo Power BI per analizzare vendite mensili, performance prodotti, efficacia promozioni e gestione resi. Include trasformazione dati con Merge di Query, visualizzazioni per città e negozio, e pagina dedicata alle vendite nette.</p>
+        <div class="proj-tags"><span class="proj-tag">Power BI</span></div>
+      </article>
+      <article class="proj-card" data-tags="Tableau|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Analisi Vendite – Catena Supermercati</h3>
+        <p class="proj-desc">Dashboard interattiva Tableau per monitorare vendite, profitti per paese ed efficienza logistica con filtri real-time. Tableau Story per supportare l'allocazione del budget marketing identificando i prodotti con maggior potenziale di crescita.</p>
+        <div class="proj-tags"><span class="proj-tag">Tableau</span></div>
+      </article>
+      <article class="proj-card" data-tags="Excel Avanzato|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Analisi Reclami Consumatori</h3>
+        <p class="proj-desc">Soluzione Excel con tre schede: Consumer Complaints (filtri avanzati e calcolo tempi di risoluzione), Geographical Insights (report per stato con formattazione condizionale) e Statistical Insights (motivazioni più frequenti).</p>
+        <div class="proj-tags"><span class="proj-tag">Excel Avanzato</span></div>
+      </article>
+      <article class="proj-card" data-tags="Excel Avanzato|ProfessionAI">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>ProfessionAI</span>
+        </div>
+        <h3 class="proj-title">Analisi Operazioni di Trading</h3>
+        <p class="proj-desc">Strumento dinamico per il monitoraggio dei trade dal 2021 con tabelle pivot, analisi del profitto e distribuzioni probabilistiche. Schede dedicate a numero operazioni, durata e profitto generato per regione.</p>
+        <div class="proj-tags"><span class="proj-tag">Excel Avanzato</span></div>
+      </article>
+      <article class="proj-card" data-tags="LabVIEW|Embedded C|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Sistema Domotico con LabVIEW e XBee</h3>
+        <p class="proj-desc">Rete di monitoraggio dei consumi elettrici con sensore SCT-013, Arduino e moduli XBee. Interfaccia LabVIEW per visualizzare i consumi e attivare carichi elettrici tramite un algoritmo di scheduling basato sulle preferenze utente. Tesi magistrale.</p>
+        <div class="proj-tags"><span class="proj-tag">LabVIEW</span><span class="proj-tag">Embedded C</span></div>
+      </article>
+      <article class="proj-card" data-tags="Embedded C|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Stazione Meteorologica IoT</h3>
+        <p class="proj-desc">Stazione meteorologica su Nucleo-64 STMicroelectronics programmata in C con sensori di temperatura, umidità, pressione, luminosità, vento e pioggia. Trasmissione dati a server remoto via Zigbee. Tesi triennale.</p>
+        <div class="proj-tags"><span class="proj-tag">Embedded C</span></div>
+      </article>
+      <article class="proj-card" data-tags="ROS Noetic|Matlab|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Robot Tagliaerba Autonomo</h3>
+        <p class="proj-desc">Simulazione di un robot tagliaerba autonomo in ROS Noetic con URDF e Gazebo. Algoritmo di coverage planning basato su grid map con sensore laser e camera frontale per il riconoscimento dell'erba e l'evitamento degli ostacoli.</p>
+        <div class="proj-tags"><span class="proj-tag">ROS Noetic</span><span class="proj-tag">Matlab</span></div>
+      </article>
+      <article class="proj-card" data-tags="Embedded C|PID|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Obstacle Avoidance su Macchinina Mecanum</h3>
+        <p class="proj-desc">Algoritmo di obstacle avoidance su STM32 Nucleo-64 per una macchinina con ruote mecanum. Sensore a ultrasuoni su servomotore (copertura 180°) e controllo PID indipendente per ciascuna ruota.</p>
+        <div class="proj-tags"><span class="proj-tag">Embedded C</span><span class="proj-tag">PID</span></div>
+      </article>
+      <article class="proj-card" data-tags="Matlab|Simulink|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Controllo Anti-Impennata Moto da Corsa</h3>
+        <p class="proj-desc">Simulazione Matlab/Simulink di un controllo anti-impennata basato sulla minimizzazione della norma H₂ e H∞. Guadagno di retroazione calcolato tramite LMI. Implementato anche un controllo robusto e LPV con attrito variabile.</p>
+        <div class="proj-tags"><span class="proj-tag">Matlab</span><span class="proj-tag">Simulink</span></div>
+      </article>
+      <article class="proj-card" data-tags="Matlab|Simulink|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Simulazione LKA e ACC</h3>
+        <p class="proj-desc">Lane Keep Assist e Adaptive Cruise Control con Simulink e Automated Driving Toolbox. LKA con controllo H₂, ACC con PID basato su sensori laser. Scenario di test con veicoli e traiettorie personalizzate.</p>
+        <div class="proj-tags"><span class="proj-tag">Matlab</span><span class="proj-tag">Simulink</span></div>
+      </article>
+      <article class="proj-card" data-tags="LabVIEW|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Analisi Spettrale Audio con LabVIEW</h3>
+        <p class="proj-desc">Virtual Instrument LabVIEW per l'acquisizione e analisi spettrale real-time di segnali audio. Verifica la concentrazione di energia in range di frequenze, calcola la frequenza di picco e visualizza il segnale nel dominio del tempo e della frequenza.</p>
+        <div class="proj-tags"><span class="proj-tag">LabVIEW</span></div>
+      </article>
+      <article class="proj-card" data-tags="Matlab|Simulink|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">EKF per Sistema Massa-Molla-Smorzatore</h3>
+        <p class="proj-desc">Identificazione e filtraggio di un sistema massa-molla-smorzatore non lineare rumoroso. Stima ARMA con minimi quadrati, Filtro di Kalman lineare e Extended Kalman Filter con linearizzazione a ogni passo di simulazione.</p>
+        <div class="proj-tags"><span class="proj-tag">Matlab</span><span class="proj-tag">Simulink</span></div>
+      </article>
+      <article class="proj-card" data-tags="Excel Avanzato|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Harvard Business Simulation</h3>
+        <p class="proj-desc">Simulazione di strategic management Harvard durante il Master MEEC. Gestione di una società virtuale con decisioni su prezzi, produzione, investimenti e innovazione per massimizzare la performance economico-finanziaria nel lungo periodo.</p>
+        <div class="proj-tags"><span class="proj-tag">Excel Avanzato</span></div>
+      </article>
+      <article class="proj-card" data-tags="Python|Excel Avanzato|UNICAL">
+        <div class="proj-card-header">
+          <span class="proj-cat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>UNICAL</span>
+        </div>
+        <h3 class="proj-title">Ottimizzazione Percorsi di Distribuzione</h3>
+        <p class="proj-desc">Calcolo dei percorsi ottimali per due furgoni su 30 farmacie con LINGO + Python. Script Python che itera via API LINGO per risolvere due cicli hamiltoniani separati, minimizzando costi ed emissioni rispettando i vincoli di tempo e distanza.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Excel Avanzato</span></div>
+      </article>
+
+    <div class="no-results" id="noResults" style="display:none;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p>Nessun progetto trovato per questo filtro.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>Alessandro Basile &mdash; Data &amp; Automation Engineer</span>
+    <div class="footer-links">
+      <span id="em-footer-projectshtml"></span>
+      <a href="https://www.linkedin.com/in/alessandro-basile/" target="_blank" class="footer-linkedin" title="LinkedIn" aria-label="LinkedIn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('em-footer-projectshtml').textContent='ale.basile'+'@'+'outlook.com';</script>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Hamburger ──
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // ── State ──
+  let activeSkill = 'all';
+  let activeCat   = 'all';
+
+  const cards      = document.querySelectorAll('.proj-card');
+  const resultsBar = document.getElementById('resultsBar');
+  const noResults  = document.getElementById('noResults');
+  const skillSelect = document.getElementById('skillSelect');
+  const resetBtn   = document.getElementById('resetBtn');
+  const catChips   = document.querySelectorAll('.filter-chip.cat');
+
+  // ── Core filter ──
+  function applyFilter() {
+    let count = 0;
+    cards.forEach(card => {
+      const tags = card.dataset.tags.split('|').map(t => t.trim().toLowerCase());
+      const skillOk = activeSkill === 'all' || tags.includes(activeSkill.toLowerCase());
+      const catOk   = activeCat   === 'all' || tags.includes(activeCat.toLowerCase());
+      const show = skillOk && catOk;
+      card.classList.toggle('hidden', !show);
+      if (show) count++;
+    });
+    resultsBar.innerHTML = `<strong>${count}</strong> progett${count === 1 ? 'o' : 'i'} trovat${count === 1 ? 'o' : 'i'}`;
+    noResults.style.display = count === 0 ? 'grid' : 'none';
+    resetBtn.classList.toggle('visible', activeSkill !== 'all' || activeCat !== 'all');
+  }
+
+  // ── Reset ──
+  function resetFilter() {
+    activeSkill = 'all';
+    activeCat   = 'all';
+    skillSelect.value = 'all';
+    catChips.forEach(c => c.classList.remove('active'));
+    applyFilter();
+  }
+
+  // ── Skill dropdown ──
+  skillSelect.addEventListener('change', () => {
+    activeSkill = skillSelect.value;
+    applyFilter();
+  });
+
+  // ── Category buttons ──
+  catChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      if (chip.classList.contains('active')) {
+        chip.classList.remove('active');
+        activeCat = 'all';
+      } else {
+        catChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeCat = chip.dataset.filter;
+      }
+      applyFilter();
+    });
+  });
+
+  // ── Tag click on cards → sets dropdown ──
+  document.querySelectorAll('.proj-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const skill = tag.textContent.trim();
+      const opt = [...skillSelect.options].find(o => o.value === skill);
+      if (opt) {
+        skillSelect.value = skill;
+        activeSkill = skill;
+        applyFilter();
+        document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── URL param: projects.html?skill=Python ──
+  const params = new URLSearchParams(window.location.search);
+  const skillParam = params.get('skill');
+  if (skillParam) {
+    const opt = [...skillSelect.options].find(o => o.value.toLowerCase() === skillParam.toLowerCase());
+    if (opt) {
+      skillSelect.value = opt.value;
+      activeSkill = opt.value;
+      applyFilter();
+    }
+  }
+</script><script>
+  // ── Hamburger ──
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // ── Filter logic ──
+  const chips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('.proj-card');
+  const resultsBar = document.getElementById('resultsBar');
+  const noResults = document.getElementById('noResults');
+
+  function applyFilter(filter) {
+    let count = 0;
+    cards.forEach(card => {
+      const tags = card.dataset.tags.toLowerCase().split('|');
+      const match = filter === 'all' || tags.includes(filter.toLowerCase());
+      card.classList.toggle('hidden', !match);
+      if (match) count++;
+    });
+    resultsBar.innerHTML = `<strong>${count}</strong> progett${count === 1 ? 'o' : 'i'} trovat${count === 1 ? 'o' : 'i'}`;
+    noResults.style.display = count === 0 ? 'grid' : 'none';
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      applyFilter(chip.dataset.filter);
+    });
+  });
+
+  // ── Tag click on cards ──
+  document.querySelectorAll('.proj-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const filter = tag.textContent.trim();
+      chips.forEach(c => {
+        c.classList.toggle('active', c.dataset.filter === filter);
+      });
+      applyFilter(filter);
+      document.querySelector('.filter-bar').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // ── URL param (es. projects.html?skill=Python) ──
+  const params = new URLSearchParams(window.location.search);
+  const skillParam = params.get('skill');
+  if (skillParam) {
+    const match = [...chips].find(c => 
