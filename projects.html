@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progetti – Alessandro Basile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">alebasile</a>
+    <ul class="nav-links">
+      <li><a href="index.html#profilo">Profilo</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="projects.html" class="active">Progetti</a></li>
+      <li><a href="index.html#esperienza">Esperienza</a></li>
+      <li><a href="index.html#extra">Attività</a></li>
+      <li><a href="index.html#interessi">Interessi</a></li>
+      <li><a href="index.html#formazione">Formazione</a></li>
+      <li><a href="index.html#contatti">Contatti</a></li>
+      <li>
+        <a href="cv.pdf" download class="btn-cv">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          CV
+        </a>
+      </li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#profilo" onclick="closeMenu()">Profilo</a>
+    <a href="index.html#skills" onclick="closeMenu()">Skills</a>
+    <a href="projects.html" onclick="closeMenu()">Progetti</a>
+    <a href="index.html#esperienza" onclick="closeMenu()">Esperienza</a>
+    <a href="index.html#extra" onclick="closeMenu()">Attività</a>
+    <a href="index.html#interessi" onclick="closeMenu()">Interessi</a>
+    <a href="index.html#formazione" onclick="closeMenu()">Formazione</a>
+    <a href="index.html#contatti" onclick="closeMenu()">Contatti</a>
+    <a href="cv.pdf" download onclick="closeMenu()">CV versione A4</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>Progetti</h1>
+    <p>Una selezione di progetti sviluppati nel lavoro e nei percorsi formativi.</p>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+
+    <div class="filter-row">
+      <span class="filter-group-label">Contesto</span>
+      <button class="fpill cat active" data-cat="all">Tutti</button>
+      <button class="fpill cat" data-cat="Replanet">⚡ Replanet</button>
+      <button class="fpill cat" data-cat="ProfessionAI">💻 ProfessionAI</button>
+      <button class="fpill cat" data-cat="UNICAL">🎓 UNICAL</button>
+      <button class="filter-reset" id="resetBtn" onclick="resetFilters()">✕ Reset</button>
+    </div>
+
+    <div class="filter-row" id="skillRow">
+      <span class="filter-group-label">Skill</span>
+      <button class="fpill skill active" data-skill="all">Tutte</button>
+      <button class="fpill skill" data-skill="Python">Python</button>
+      <button class="fpill skill" data-skill="SQL">SQL</button>
+      <button class="fpill skill" data-skill="Power BI">Power BI</button>
+      <button class="fpill skill" data-skill="Tableau">Tableau</button>
+      <button class="fpill skill" data-skill="Excel">Excel</button>
+      <button class="fpill skill" data-skill="NLP">NLP</button>
+      <button class="fpill skill" data-skill="Machine Learning">ML</button>
+      <button class="fpill skill" data-skill="Claude Code">Claude Code</button>
+      <button class="fpill skill" data-skill="Matlab">Matlab</button>
+      <button class="fpill skill" data-skill="Simulink">Simulink</button>
+      <button class="fpill skill" data-skill="Embedded C">Embedded C</button>
+      <button class="fpill skill" data-skill="LabVIEW">LabVIEW</button>
+      <button class="fpill skill" data-skill="ROS Noetic">ROS</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="results-bar" id="resultsBar"></div>
+
+<div class="projects-wrap">
+  <div class="projects-grid" id="projectsGrid">
+
+    <article class="proj-card" data-cat="Replanet" data-tags="Python|HTML|Claude Code" data-primary="true">
+      <span class="proj-cat">⚡ Replanet Energy</span>
+      <h3 class="proj-title">Configuratore Offerte Fotovoltaiche</h3>
+      <p class="proj-problem">Ogni preventivo veniva costruito a mano: ore di lavoro, calcoli manuali e margine di errore alto.</p>
+      <p class="proj-desc">Webapp sviluppata con Claude Code per gestire l'intero ciclo di preventivazione: catalogo componenti configurabile, calcolo ROI e risparmio sui consumi reali del cliente, generazione automatica di offerta PDF e computo metrico. Ogni offerta alimenta un database che diventa l'anagrafica delle commesse.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">HTML</span>
+        <span class="proj-tag">Claude Code</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="Replanet" data-tags="Python|Excel" data-primary="true">
+      <span class="proj-cat">⚡ Replanet Energy</span>
+      <h3 class="proj-title">Analisi Redditività Accumulo Energetico</h3>
+      <p class="proj-problem">Capire se e quando un sistema di accumulo è conveniente per impianti a immissione totale non era immediato con i dati disponibili.</p>
+      <p class="proj-desc">Modelli Python per simulare scenari di arbitraggio e time-shifting su dati reali GME/Terna. Output: analisi di break-even e redditività al variare dei parametri di mercato (PUN, prezzi batterie, profilo di carico).</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Excel</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="Replanet" data-tags="Power BI" data-primary="true">
+      <span class="proj-cat">⚡ Replanet Energy</span>
+      <h3 class="proj-title">Dashboard Asset Fotovoltaici</h3>
+      <p class="proj-problem">I dati di produzione erano sparsi su portali separati per ogni brand di inverter: nessuna vista unificata, nessun confronto possibile.</p>
+      <p class="proj-desc">Progettazione del modello dati e sviluppo di una dashboard Power BI centralizzata per il monitoraggio degli asset fotovoltaici. Vista unificata su performance, anomalie e KPI operativi, con ETL Python per l'aggregazione delle fonti eterogenee.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Power BI</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="Replanet" data-tags="Python|HTML|Tableau" data-primary="true">
+      <span class="proj-cat">⚡ Replanet Energy</span>
+      <h3 class="proj-title">Report Analisi PUN e Competitiva</h3>
+      <p class="proj-problem">Le analisi di mercato erano disperse e non consultabili rapidamente da chi doveva prendere decisioni.</p>
+      <p class="proj-desc">Report interattivi per l'analisi del Prezzo Unico Nazionale e mappatura competitiva delle aziende del settore energetico per codice ATECO. Generazione automatizzata e aggiornabile con script Python.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">HTML</span>
+        <span class="proj-tag">Tableau</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Python|NLP|Machine Learning" data-primary="true">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Analisi del Sentiment sul Bitcoin</h3>
+      <p class="proj-desc">Analisi del sentiment sui tweet riguardanti il Bitcoin tramite NLP e serie storiche. Implementato con il modello VADER su PySpark, con visualizzazioni delle variazioni giornaliere realizzate con Matplotlib e Seaborn.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">NLP</span>
+        <span class="proj-tag">Machine Learning</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/professionai-sentiment-analysis" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Python|Machine Learning" data-primary="true">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Segmentazione Clientela – Servizi Finanziari</h3>
+      <p class="proj-desc">Segmentazione della clientela tramite clustering K-Means per ottimizzare campagne marketing. Dopo EDA e normalizzazione, i cluster sono stati valutati con silhouette score ed elbow method, identificando gruppi omogenei per spesa e abitudini d'uso.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Machine Learning</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/professionai-cluster-analysis" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Python|NLP|Machine Learning" data-primary="true">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Filtro per Fake News</h3>
+      <p class="proj-desc">Classificatore di notizie vere e false basato su Random Forest. Il testo è preprocessato con spaCy (tokenizzazione, stop words, lemmatizzazione); il modello è valutato con accuracy, precision e recall.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">NLP</span>
+        <span class="proj-tag">Machine Learning</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/professionai-nlp" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="SQL" data-primary="true">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Analisi Clienti di una Banca</h3>
+      <p class="proj-desc">Creazione di una tabella denormalizzata con feature avanzate per training di modelli ML. Join tra tabelle clienti, conti e transazioni, calcolo di indicatori comportamentali per predizione di abbandono e frodi.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">SQL</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/professionai-sql" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Power BI" data-primary="true">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Report Punti Vendita – Catena Elettronica</h3>
+      <p class="proj-desc">Report interattivo Power BI per analizzare vendite mensili, performance prodotti, efficacia promozioni e gestione resi. Include trasformazione dati con Merge di Query e pagina dedicata alle vendite nette per città e negozio.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Power BI</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/professionai-powerbi" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Tableau" data-primary="true">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Analisi Vendite – Catena Supermercati</h3>
+      <p class="proj-desc">Dashboard interattiva Tableau per monitorare vendite, profitti per paese ed efficienza logistica con filtri real-time. Tableau Story per supportare l'allocazione del budget marketing identificando i prodotti con maggior potenziale.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Tableau</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/professionai-tableau" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Python" data-primary="false">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Software Gestionale per Negozio</h3>
+      <p class="proj-desc">Software gestionale testuale da riga di comando per un negozio di prodotti vegani. Gestisce inventario, vendite, aggiornamento scorte, calcolo profitti e persistenza su file. Design modulare con strutture dati ottimizzate e controlli di input.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Python|SQL" data-primary="false">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Analisi Disastri Aerei 1919–2023</h3>
+      <p class="proj-desc">Analisi di quasi 25.000 incidenti aerei con distribuzione geografica, trend temporali, analisi degli operatori e fattori stagionali. Librerie: Pandas, Matplotlib, Seaborn, GeoPandas.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">SQL</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Excel" data-primary="false">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Analisi Reclami Consumatori</h3>
+      <p class="proj-desc">Soluzione Excel con tre schede: Consumer Complaints (filtri avanzati e calcolo tempi di risoluzione), Geographical Insights (report per stato con formattazione condizionale) e Statistical Insights (motivazioni più frequenti).</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Excel</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="ProfessionAI" data-tags="Excel" data-primary="false">
+      <span class="proj-cat">💻 ProfessionAI</span>
+      <h3 class="proj-title">Analisi Operazioni di Trading</h3>
+      <p class="proj-desc">Strumento dinamico per il monitoraggio dei trade dal 2021 con tabelle pivot, analisi del profitto e distribuzioni probabilistiche. Schede dedicate a numero operazioni, durata e profitto generato per regione.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Excel</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="LabVIEW|Embedded C" data-primary="true">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Sistema Domotico con LabVIEW e XBee</h3>
+      <p class="proj-desc">Rete di monitoraggio dei consumi elettrici con sensore SCT-013, Arduino e moduli XBee. Interfaccia LabVIEW per visualizzare i consumi e attivare carichi elettrici tramite un algoritmo di scheduling basato sulle preferenze utente. Tesi triennale.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">LabVIEW</span>
+        <span class="proj-tag">Embedded C</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/unical-sistema-domotico" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="Embedded C" data-primary="true">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Stazione Meteorologica IoT</h3>
+      <p class="proj-desc">Stazione meteorologica su Nucleo-64 STMicroelectronics programmata in C con sensori di temperatura, umidità, pressione, luminosità, vento e pioggia. Trasmissione dati a server remoto via Zigbee. Tesi triennale.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Embedded C</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/unical-stazione-meteo" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="ROS Noetic|Python" data-primary="true">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Robot Tagliaerba Autonomo</h3>
+      <p class="proj-desc">Simulazione di un robot tagliaerba autonomo in ROS Noetic con URDF e Gazebo. Algoritmo di coverage planning basato su grid map con sensore laser e camera frontale per il riconoscimento dell'erba e l'evitamento degli ostacoli.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">ROS Noetic</span>
+        <span class="proj-tag">Python</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/unical-robomow" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="Embedded C" data-primary="true">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Obstacle Avoidance su Macchinina Mecanum</h3>
+      <p class="proj-desc">Algoritmo di obstacle avoidance su STM32 Nucleo-64 per una macchinina con ruote mecanum. Sensore a ultrasuoni su servomotore con copertura 180 gradi e controllo PID indipendente per ciascuna ruota.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Embedded C</span>
+      </div>
+      <a class="proj-github" href="https://github.com/alebasile/unical-obstacle-avoidance" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Vedi su GitHub
+      </a>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="Matlab|Simulink" data-primary="false">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Controllo Anti-Impennata Moto da Corsa</h3>
+      <p class="proj-desc">Simulazione Matlab/Simulink di un controllo anti-impennata basato su minimizzazione della norma H2 e H-infinito. Guadagno di retroazione calcolato tramite LMI. Implementato anche controllo robusto e LPV con attrito variabile.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Matlab</span>
+        <span class="proj-tag">Simulink</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="Matlab|Simulink" data-primary="false">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Simulazione LKA e ACC</h3>
+      <p class="proj-desc">Lane Keep Assist e Adaptive Cruise Control con Simulink e Automated Driving Toolbox. LKA con controllo H2, ACC con PID basato su sensori laser. Scenario di test con veicoli e traiettorie personalizzate.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Matlab</span>
+        <span class="proj-tag">Simulink</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="LabVIEW" data-primary="false">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Analisi Spettrale Audio con LabVIEW</h3>
+      <p class="proj-desc">Virtual Instrument LabVIEW per l'acquisizione e analisi spettrale real-time di segnali audio. Verifica la concentrazione di energia in range di frequenze, calcola la frequenza di picco e visualizza il segnale nel dominio del tempo e della frequenza.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">LabVIEW</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="Matlab|Simulink" data-primary="false">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">EKF per Sistema Massa-Molla-Smorzatore</h3>
+      <p class="proj-desc">Identificazione e filtraggio di un sistema massa-molla-smorzatore non lineare rumoroso. Stima ARMA con minimi quadrati, Filtro di Kalman lineare e Extended Kalman Filter con linearizzazione a ogni passo di simulazione.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Matlab</span>
+        <span class="proj-tag">Simulink</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="Excel" data-primary="false">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Harvard Business Simulation</h3>
+      <p class="proj-desc">Simulazione di strategic management Harvard durante il Master MEEC. Gestione di una società virtuale con decisioni su prezzi, produzione, investimenti e innovazione per massimizzare la performance economico-finanziaria nel lungo periodo.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Excel</span>
+      </div>
+    </article>
+
+    <article class="proj-card" data-cat="UNICAL" data-tags="Python|Excel" data-primary="false">
+      <span class="proj-cat">🎓 UNICAL</span>
+      <h3 class="proj-title">Ottimizzazione Percorsi di Distribuzione</h3>
+      <p class="proj-desc">Calcolo dei percorsi ottimali per due furgoni su 30 farmacie con LINGO e Python. Script Python che itera via API LINGO per risolvere due cicli hamiltoniani separati, minimizzando costi ed emissioni rispettando i vincoli di tempo e distanza.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Excel</span>
+      </div>
+    </article>
+
+    <div class="no-results" id="noResults">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p>Nessun progetto trovato per questo filtro.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>Alessandro Basile &nbsp;|&nbsp; Data &amp; Automation Engineer</span>
+    <div class="footer-links">
+      <span id="em-footer"></span>
+      <a href="https://www.linkedin.com/in/alessandro-basile/" target="_blank" aria-label="LinkedIn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('em-footer').textContent = 'ale.basile' + '@' + 'outlook.com';
+
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu()  { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  let activeCat   = 'all';
+  let activeSkill = 'all';
+
+  const cards      = document.querySelectorAll('.proj-card');
+  const catPills   = document.querySelectorAll('.fpill.cat');
+  const skillPills = document.querySelectorAll('.fpill.skill');
+  const resultsBar = document.getElementById('resultsBar');
+  const noResults  = document.getElementById('noResults');
+  const resetBtn   = document.getElementById('resetBtn');
+
+  function applyFilters() {
+    let count = 0;
+    const skillActive = activeSkill !== 'all';
+
+    cards.forEach(card => {
+      const cat     = card.dataset.cat;
+      const tags    = card.dataset.tags.split('|').map(t => t.trim().toLowerCase());
+      const primary = card.dataset.primary === 'true';
+
+      const catOk   = activeCat === 'all' || cat.toLowerCase() === activeCat.toLowerCase();
+      const skillOk = tags.includes(activeSkill.toLowerCase());
+
+      let show = false;
+      if (skillActive) {
+        show = skillOk && catOk;
+      } else {
+        show = catOk && primary;
+      }
+
+      card.classList.toggle('hidden', !show);
+      if (show) count++;
+    });
+
+    resultsBar.innerHTML = '<strong>' + count + '</strong> progett' + (count === 1 ? 'o' : 'i') + ' trovat' + (count === 1 ? 'o' : 'i');
+    noResults.style.display = count === 0 ? 'block' : 'none';
+    resetBtn.classList.toggle('visible', activeCat !== 'all' || activeSkill !== 'all');
+  }
+
+  function resetFilters() {
+    activeCat   = 'all';
+    activeSkill = 'all';
+    catPills.forEach(p  => p.classList.toggle('active', p.dataset.cat   === 'all'));
+    skillPills.forEach(p => p.classList.toggle('active', p.dataset.skill === 'all'));
+    applyFilters();
+  }
+
+  catPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      activeCat = pill.dataset.cat;
+      catPills.forEach(p => p.classList.toggle('active', p === pill));
+      applyFilters();
+    });
+  });
+
+  skillPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      activeSkill = pill.dataset.skill;
+      skillPills.forEach(p => p.classList.toggle('active', p === pill));
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.proj-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const skill = tag.textContent.trim();
+      const match = [...skillPills].find(p => p.dataset.skill === skill);
+      if (match) {
+        activeSkill = skill;
+        skillPills.forEach(p => p.classList.toggle('active', p === match));
+        applyFilters();
+        document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const sp = params.get('skill');
+  if (sp) {
+    const match = [...skillPills].find(p => p.dataset.skill.toLowerCase() === sp.toLowerCase());
+    if (match) { match.click(); }
+  }
+
+  applyFilters();
+</script>
+</body>
+</html>
